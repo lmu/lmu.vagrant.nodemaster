@@ -180,6 +180,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                           "ansiblem2.zuv.uni-muenchen.de",
                           "ansiblem3.zuv.uni-muenchen.de",
                           "ansiblem4.zuv.uni-muenchen.de",
+                         ]
       }
       #ansible.verbose = "vvvv"
       #ansible.verbose = "vvv"
