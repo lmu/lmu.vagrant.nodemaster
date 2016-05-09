@@ -114,6 +114,36 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
+  config.vm.define "ansiblem4.verwaltung.uni-muenchen.de", autostart: false do |node|
+    node.vm.box = "centos/7"
+    node.vm.provider "virtualbox" do |vb|
+      vb.name = "NodeMaster4"
+      vb.memory = 4096
+      vb.cpus = 4
+      vb.customize ["modifyvm", :id,
+                    "--cpuexecutioncap", "50",
+                    "--groups", "/Vagrant/LMU/NodeMaster"
+                   ]
+    end
+
+    #node.vm.network "forwarded_port", guest: 3000, host: 8000
+    #node.vm.network "forwarded_port", guest: 3001, host: 8001
+    #node.vm.network "forwarded_port", guest: 5000, host: 5000
+    #node.vm.network "forwarded_port", guest: 5432, host: 5432
+    #node.vm.network "forwarded_port", guest: 9001, host: 9001
+
+    if ENV['OS'] != "Windows_NT"
+      node.vm.network :private_network, ip: PRIVATE_NETWORK_BASE + ".13"
+      if USE_PUBLIC_NETWORK
+        node.vm.network :public_network, ip: PUBLIC_NETWORK_BASE + ".13"
+      end
+    end
+    if ENV['OS'] == "Windows_NT"
+      node.vm.network "forwarded_port", guest: 80, host: 80
+      node.vm.network "forwarded_port", guest: 443, host: 443
+    end
+  end
+
   if ENV['OS'] != "Windows_NT"
     config.vm.provision "ansible" do |ansible|
       #ansible.playbook = "lmu.ansible.playbooks/base-preseed.yml"
