@@ -24,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.ssh.forward_agent = true
 
-  config.vm.define "ansiblem1.verwaltung.uni-muenchen.de", primary: true, autostart: true do |node|
+  config.vm.define "ansiblem1.zuv.uni-muenchen.de", primary: true, autostart: true do |node|
     node.vm.box = "ubuntu/trusty64"
     node.vm.provider "virtualbox" do |vb|
       vb.name = "NodeMaster1"
@@ -54,7 +54,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  config.vm.define "ansiblem2.verwaltung.uni-muenchen.de", autostart: false do |node|
+  config.vm.define "ansiblem2.zuv.uni-muenchen.de", autostart: false do |node|
     node.vm.box = "ubuntu/xenial64"
     node.vm.provider "virtualbox" do |vb|
       vb.name = "NodeMaster2"
@@ -84,7 +84,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  config.vm.define "ansiblem3.verwaltung.uni-muenchen.de", autostart: false do |node|
+  config.vm.define "ansiblem3.zuv.uni-muenchen.de", autostart: false do |node|
     node.vm.box = "debian/jessie64"
     node.vm.provider "virtualbox" do |vb|
       vb.name = "NodeMaster3"
@@ -114,7 +114,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
-  config.vm.define "ansiblem4.verwaltung.uni-muenchen.de", autostart: false do |node|
+  config.vm.define "ansiblem4.zuv.uni-muenchen.de", autostart: false do |node|
     node.vm.box = "centos/7"
     node.vm.provider "virtualbox" do |vb|
       vb.name = "NodeMaster4"
@@ -149,9 +149,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #ansible.playbook = "lmu.ansible.playbooks/base-preseed.yml"
       ansible.playbook = "lmu.ansible.playbooks/nodemaster.yml"
       ansible.groups = {
-        "nodemasters" => ["ansiblem1.verwaltung.uni-muenchen.de",
-                          "ansiblem2.verwaltung.uni-muenchen.de",
-                          "ansiblem3.verwaltung.uni-muenchen.de",
+        "nodemasters" => ["ansiblem1.zuv.uni-muenchen.de",
+                          "ansiblem2.zuv.uni-muenchen.de",
+                          "ansiblem3.zuv.uni-muenchen.de",
+                          "ansiblem4.zuv.uni-muenchen.de",
                          ]
       }
       #ansible.verbose = "vvvv"
@@ -175,7 +176,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #ansible.playbook = "lmu.ansible.playbooks/base-preseed.yml"
       ansible.playbook = "lmu.ansible.playbooks/nodemaster.yml"
       ansible.groups = {
-        "nodemasters" => ["ansiblem1.verwaltung.uni-muenchen.de", ]
+        "nodemasters" => ["ansiblem1.zuv.uni-muenchen.de",
+                          "ansiblem2.zuv.uni-muenchen.de",
+                          "ansiblem3.zuv.uni-muenchen.de",
+                          "ansiblem4.zuv.uni-muenchen.de",
       }
       #ansible.verbose = "vvvv"
       #ansible.verbose = "vvv"
