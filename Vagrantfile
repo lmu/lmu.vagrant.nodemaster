@@ -43,9 +43,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #node.vm.network "forwarded_port", guest: 9001, host: 9001
 
     if ENV['OS'] != "Windows_NT"
-      node.vm.network :private_network, ip: PRIVATE_NETWORK_BASE + ".10"
+      node.vm.network :private_network, ip: PRIVATE_NETWORK_BASE + ".11"
       if USE_PUBLIC_NETWORK
-        node.vm.network :public_network, ip: PUBLIC_NETWORK_BASE + ".10"
+        node.vm.network :public_network, ip: PUBLIC_NETWORK_BASE + ".11"
       end
     end
     if ENV['OS'] == "Windows_NT"
@@ -73,9 +73,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #node.vm.network "forwarded_port", guest: 9001, host: 9001
 
     if ENV['OS'] != "Windows_NT"
-      node.vm.network :private_network, ip: PRIVATE_NETWORK_BASE + ".11"
+      node.vm.network :private_network, ip: PRIVATE_NETWORK_BASE + ".12"
       if USE_PUBLIC_NETWORK
-        node.vm.network :public_network, ip: PUBLIC_NETWORK_BASE + ".11"
+        node.vm.network :public_network, ip: PUBLIC_NETWORK_BASE + ".12"
       end
     end
     if ENV['OS'] == "Windows_NT"
@@ -103,9 +103,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #node.vm.network "forwarded_port", guest: 9001, host: 9001
 
     if ENV['OS'] != "Windows_NT"
-      node.vm.network :private_network, ip: PRIVATE_NETWORK_BASE + ".12"
+      node.vm.network :private_network, ip: PRIVATE_NETWORK_BASE + ".13"
       if USE_PUBLIC_NETWORK
-        node.vm.network :public_network, ip: PUBLIC_NETWORK_BASE + ".12"
+        node.vm.network :public_network, ip: PUBLIC_NETWORK_BASE + ".13"
       end
     end
     if ENV['OS'] == "Windows_NT"
@@ -133,15 +133,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #node.vm.network "forwarded_port", guest: 9001, host: 9001
 
     if ENV['OS'] != "Windows_NT"
-      node.vm.network :private_network, ip: PRIVATE_NETWORK_BASE + ".13"
+      node.vm.network :private_network, ip: PRIVATE_NETWORK_BASE + ".14"
       if USE_PUBLIC_NETWORK
-        node.vm.network :public_network, ip: PUBLIC_NETWORK_BASE + ".13"
+        node.vm.network :public_network, ip: PUBLIC_NETWORK_BASE + ".14"
       end
     end
     if ENV['OS'] == "Windows_NT"
       node.vm.network "forwarded_port", guest: 80, host: 80
       node.vm.network "forwarded_port", guest: 443, host: 443
     end
+  end
+
+  config.vm.provision "shell" do |shell|
+    shell.inline = "apt-get install python aptitude"
   end
 
   if ENV['OS'] != "Windows_NT"
